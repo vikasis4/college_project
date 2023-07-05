@@ -1,0 +1,9 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.grad-text {
+    background: linear-gradient(to right, rgb(111, 64, 145), rgb(221, 87, 109));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}

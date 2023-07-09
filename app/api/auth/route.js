@@ -19,7 +19,7 @@ export const POST = async (req, res) => {
             response = await verifyOtp(email, otp);
         }
         else if (action === 'verifyToken') {
-            response = await verifyTkn(email, token);
+            response = await verifyTkn(token);
         }
 
         return NextResponse.json(response)
@@ -81,13 +81,15 @@ const verifyOtp = async (email, otp) => {
 }
 
 
-const verifyTkn = async (email, token) => {
+const verifyTkn = async (token) => {
     var toks = await verifyToken(token);
     if (toks.status) {
-        var account = await Account.findOne({ email });
-        var token = account.token.filter(({ tkns }) => tkns === toks.token)
-        if (token.length > 0) {
-            return { status: true, account }
+        var account = await Account.findById(toks.result);
+        if (account) {
+            var tokin = account.tokens.filter(({ tkns }) => tkns === token)
+            if (tokin.length > 0) {
+                return { status: true, account }
+            }
         }
         return { status: false }
     }

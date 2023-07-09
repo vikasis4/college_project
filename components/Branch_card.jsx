@@ -17,7 +17,7 @@ function Branch_card() {
             var cards = general.datas.map(({ name, subjects }) => {
                 return (
                     <div key={name}>
-                        <div onClick={() => router.push('/' + name)} className=" p-4 border-2 border-slate-300 bg-slate-100 m-2 flex flex-col justify-center place-items-center gap-9 rounded-md shadow-lg hover:cursor-pointer hover:translate-y-[-1rem] ease-in duration-100 transform-gpu">
+                        <div onClick={() => router.push('/branch/' + name)} className=" p-4 border-2 border-slate-300 bg-slate-100 m-2 flex flex-col justify-center place-items-center gap-9 rounded-md shadow-lg hover:cursor-pointer hover:translate-y-[-1rem] ease-in duration-100 transform-gpu">
                             <Image alt="BIROS" className="rounded-md" src={`/images/${name}.jpg`} width={260} height={260} />
                             <h1 className="text-black font-extrabold text-4xl grad-text text-center">
                                 {name}

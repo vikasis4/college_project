@@ -2,6 +2,7 @@ import '@styles/globals.css'
 import { Noto_Sans_JP } from 'next/font/google';
 import Navbar from '@components/Navbar';
 import { GeneralProvider } from '@context/general';
+import { PreFunction } from '@preFunctions/preFunction';
 
 const notoSansJapanese = Noto_Sans_JP({
   preload: false,
@@ -15,14 +16,18 @@ export const metadata = {
 
 function RootLayout({ children }) {
 
+
   return (
 
     <html>
       <body>
         <main className={`${notoSansJapanese.variable} font-sans `}>
           <GeneralProvider>
-                <Navbar />
-            {children}
+
+              <Navbar />
+              {children}
+              <PreFunction />
+
           </GeneralProvider>
         </main>
       </body>

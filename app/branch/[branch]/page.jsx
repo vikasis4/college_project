@@ -13,8 +13,7 @@ function page({ params }) {
     useEffect(() => {
         if (general.datas) {
             var subjectData = general.datas.filter(({ name }) => name === params.branch)
-            console.log(subjectData);
-            console.log(subjectData[0].subjects);
+          
             var cards = subjectData[0].subjects.map(({ name }) => {
                 return (
                     <div className=" " key={name}>

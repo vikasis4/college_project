@@ -7,9 +7,11 @@ const AccountSchema = new Schema({
         tkns: { type: "string" }
     }],
     uploads: [{
+        name:{type: "string"},
         relationId: { type: "string" },
     }],
     comments: [{
+        comment: { type: "string"},
         relationId: { type: "string" },
     }]
 })

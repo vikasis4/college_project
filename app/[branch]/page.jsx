@@ -30,9 +30,12 @@ function page({ params }) {
         }
     }, [general.datas])
     return (
-        <section className="pt-32">
-            <h1 className="px-6 pb-12 font-extrabold text-4xl text-blue-400"> --- {params.branch}</h1>
+        <section className="pt-32 bg-[url('/images/back.jpeg')] bg-contain bg-fixed h-full">
+            <h1 className="px-6 pb-12 font-extrabold text-4xl text-gray-700 uppercase"> --- {params.branch}</h1>
             <div className=" flex flex-row flex-wrap justify-center place-items-center">
+                {map}
+                {map}
+                {map}
                 {map}
             </div>
         </section>

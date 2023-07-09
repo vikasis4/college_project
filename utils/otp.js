@@ -1,4 +1,4 @@
 export const generateOtp = ()=>{
-    var numb = parseInt(Math.random()*1000000);
+    var numb = Math.floor(100000 + Math.random() * 900000);
     return numb
 }

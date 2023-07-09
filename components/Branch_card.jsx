@@ -31,7 +31,7 @@ function Branch_card() {
     }, [general.datas])
 
     return (
-        <section className="text-amber-950 py-32 bg-[url('/images/back.jpg')] bg-contain bg-fixed px-8 flex flex-row flex-wrap gap-8 justify-center">{map}</section>
+        <section className="text-amber-950 py-32 bg-[url('/images/back.jpeg')] bg-contain bg-fixed px-8 flex flex-row flex-wrap gap-8 justify-center">{map}</section>
     )
 }
 

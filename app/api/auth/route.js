@@ -3,12 +3,13 @@ import { connectToDb } from "@utils/database";
 import Account from "@models/account";
 import { otpMail } from "@utils/handleEmail";
 import { generateOtp } from "@utils/otp";
+import { generateToken, verifyToken } from "@utils/jwtToken";
 
 export const POST = async (req, res) => {
     try {
 
         await connectToDb();
-        var { action, otp, email } = await req.json();
+        var { action, otp, email, token } = await req.json();
         var response;
 
         if (action === 'auth') {
@@ -16,6 +17,9 @@ export const POST = async (req, res) => {
         }
         else if (action === 'verifyOtp') {
             response = await verifyOtp(email, otp);
+        }
+        else if (action === 'verifyToken') {
+            response = await verifyTkn(email, token);
         }
 
         return NextResponse.json(response)
@@ -26,6 +30,7 @@ export const POST = async (req, res) => {
     }
 }
 
+////////////////////////////////// FUNCTIONS //////////////////////////////////////
 const auth = async (email) => {
 
     try {
@@ -57,12 +62,33 @@ const verifyOtp = async (email, otp) => {
     try {
         var account = await Account.findOne({ email });
         if (account.otp.toString() === otp.toString()) {
-            return { status: 'true' }
-        }else{
+
+            if (account.tokens.length === 10) {
+                account.tokens.splice(4, 10)
+            }
+            var token = await generateToken(account._id.toString());
+            account.tokens.push({tkns:token});
+            account.save()
+            return { status: 'true', token }
+
+        } else {
             return { status: 'galat' }
         }
     } catch (error) {
         console.log(error);
         return { status: 'false' }
+    }
+}
+
+
+const verifyTkn = async (email, token) => {
+    var toks = await verifyToken(token);
+    if (toks.status) {
+        var account = await Account.findOne({ email });
+        var token = account.token.filter(({ tkns }) => tkns === toks.token)
+        if (token.length > 0) {
+            return { status: true, account }
+        }
+        return { status: false }
     }
 }

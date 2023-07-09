@@ -14,13 +14,14 @@ export const metadata = {
 }
 
 function RootLayout({ children }) {
+
   return (
 
     <html>
       <body>
         <main className={`${notoSansJapanese.variable} font-sans `}>
           <GeneralProvider>
-            <Navbar />
+                <Navbar />
             {children}
           </GeneralProvider>
         </main>

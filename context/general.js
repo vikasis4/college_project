@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { createContext, useState, useEffect } from "react";
 
 export const GeneralContext = createContext({})
@@ -7,6 +8,8 @@ export const GeneralContext = createContext({})
 export const GeneralProvider = ({ children }) => {
 
     const [datas, setDatas] = useState(null);
+    const [mode, setMode] = useState('user');
+
     useEffect(() => {
         const fetch_data = async () => {
             const response = await fetch("http://localhost:3000/api/batch", {
@@ -19,8 +22,8 @@ export const GeneralProvider = ({ children }) => {
     }, [])
 
     return (
-        <GeneralContext.Provider value={{ datas, setDatas }}>
+        <GeneralContext.Provider value={{ datas, setDatas, mode, setMode }}>
             {children}
         </GeneralContext.Provider>
     )
-};
+} 

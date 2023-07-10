@@ -45,7 +45,7 @@ function Pyqs(props) {
             const sendPdf = async () => {
                 var response = await fetch(API_PDF, {
                     method: 'POST',
-                    body: JSON.stringify({ action: "pyq", author: props.general.profile.name, link: downloadLink, year, type: paper })
+                    body: JSON.stringify({ id: props.general.subject._id, author: props.general.profile.name, link: downloadLink, year, type: 'pyq', PaperType: paper })
                 })
                 var result = await response.json();
                 if (result.status) {
@@ -53,6 +53,8 @@ function Pyqs(props) {
                 } else {
                     alert('Upload failed please try again later');
                 }
+                setUploadProgress(null)
+                setFile(null)
             }
             sendPdf()
         }
@@ -61,7 +63,6 @@ function Pyqs(props) {
     const handleSelectedFile = (files) => {
         if (files && files[0].size < 60000000) {
             setFile(files[0])
-            console.log(files[0])
         } else {
             alert('File size to large, size should be less than 60 mb')
         }

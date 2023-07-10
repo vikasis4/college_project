@@ -7,14 +7,14 @@ export const POST = async (req, res) => {
     try {
 
         await connectToDb();
-        var { id, notes, type, pyq } = await req.json();
+        var { id, author, year, link, type, PaperType } = await req.json();
         var response;
 
         if (type === 'notes') {
-            response = await handle_notes(id, notes);
+            response = await handle_notes(id, author, link);
         }
-        else if (type === 'pyqs') {
-            response = await handle_pyq(id, pyq);
+        else if (type === 'pyq') {
+            response = await handle_pyq(id, PaperType, year, author, link);
         }
 
         return NextResponse.json(response)
@@ -33,19 +33,36 @@ export const GET = async (req, res) => {
         const name = headersList.get("named");
         var pdf = await Pdf.findOne({ SubjectRelationId: id })
         if (pdf) {
-            return NextResponse.json({ status: true, pdf })
+            return { status: true, pdf }
         } else {
             var newPdf = await Pdf.create({ Name: name, SubjectRelationId: id })
-            return NextResponse.json({ status: true, pdf: newPdf })
+            return { status: true, pdf: newPdf }
         }
     } catch (error) {
         console.log(error);
-        return NextResponse.json({ status: false })
+        return { status: false }
     }
 }
 
 ///////////////////////// FUNCTIONS ///////////////////////
 
-const handle_notes = async (id, notes) => {
+const handle_pyq = async (id, PaperType, year, author, link) => {
 
+    try {
+        var tysm = year ? year : 0;
+
+        var pdf = await Pdf.findOne({ SubjectRelationId: id });
+        pdf.pyqs.push({
+            link,
+            year: tysm,
+            author,
+            type: PaperType
+        })
+        await pdf.save();
+        return { status: true }
+
+    } catch (error) {
+        console.log(error);
+        return { status: false }
+    }
 }

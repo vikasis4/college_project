@@ -14,7 +14,7 @@ function pages() {
     if (!general.profile.login) {
       router.push('/')
     }
-  },[])
+  },[general])
 
   return (
     <section className="mt-32 flex flex-col justify-center place-items-center">
@@ -34,7 +34,7 @@ function pages() {
             </h1>
         }
       </div>
-      <button onClick={Logout} className="w-4/5 bg-blue-600 mt-8 py-4 rounded-md text-white text-bold hover:bg-pink-600">LogOut</button>
+      <button onClick={()=>Logout(general)} className="w-4/5 bg-blue-600 mt-8 py-4 rounded-md text-white text-bold hover:bg-pink-600">LogOut</button>
     </section>
   )
 }

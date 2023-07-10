@@ -8,7 +8,9 @@ export const GeneralContext = createContext({})
 export const GeneralProvider = ({ children }) => {
 
     const [datas, setDatas] = useState(null);
+    const [subject, setSubject] = useState(null)
     const [profile, setProfile] = useState({
+        name:'',
         email:'',
         comments:[],
         uploads:[],
@@ -17,7 +19,7 @@ export const GeneralProvider = ({ children }) => {
 
 
     return (
-        <GeneralContext.Provider value={{ datas, setDatas, profile, setProfile}}>
+        <GeneralContext.Provider value={{ datas, setDatas, profile, setProfile, subject, setSubject}}>
             {children}
         </GeneralContext.Provider>
     )

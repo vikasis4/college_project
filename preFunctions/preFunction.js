@@ -26,7 +26,7 @@ export const PreFunction = () => {
                 })
                 var result = await response.json();
                 if (result.status) {
-                    general.setProfile({email: result.account.email, comments: result.account.comments, uploads: result.account.uploads, login:true})
+                    general.setProfile({name:result.account.name, email: result.account.email, comments: result.account.comments, uploads: result.account.uploads, login:true})
                 }else{
                     localStorage.removeItem('token')
                 }

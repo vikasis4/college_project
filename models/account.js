@@ -1,17 +1,18 @@
 import { Schema, model, models } from "mongoose";
 
 const AccountSchema = new Schema({
+    name: { type: "string", required: true },
     email: { type: "string", require: true },
     otp: { type: "number", default: 0 },
     tokens: [{
         tkns: { type: "string" }
     }],
     uploads: [{
-        name:{type: "string"},
+        name: { type: "string" },
         relationId: { type: "string" },
     }],
     comments: [{
-        comment: { type: "string"},
+        comment: { type: "string" },
         relationId: { type: "string" },
     }]
 })

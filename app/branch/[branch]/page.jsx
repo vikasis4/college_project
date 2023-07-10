@@ -2,7 +2,6 @@
 import { useContext, useState, useEffect } from "react";
 import { GeneralContext } from "@context/general";
 import { useRouter } from 'next/navigation'
-import Image from 'next/image';
 
 function page({ params }) {
 
@@ -13,11 +12,11 @@ function page({ params }) {
     useEffect(() => {
         if (general.datas) {
             var subjectData = general.datas.filter(({ name }) => name === params.branch)
-          
-            var cards = subjectData[0].subjects.map(({ name }) => {
+
+            var cards = subjectData[0].subjects.map(({ name, _id }) => {
                 return (
                     <div className=" " key={name}>
-                        <div onClick={() => router.push('/' + name)} className=" p-4 border-2 bg-[url('/images/back2.jpg')] bg-contain border-slate-300 m-2 flex flex-col justify-center place-items-center gap-9 rounded-md shadow-lg hover:cursor-pointer hover:translate-y-[-1rem] ease-in duration-100 transform-gpu">
+                        <div onClick={() => {general.setSubject({name,_id}); router.push('/branch/' + params.branch + '/' + name)}} className=" p-4 border-2 bg-[url('/images/back2.jpg')] bg-contain border-slate-300 m-2 flex flex-col justify-center place-items-center gap-9 rounded-md shadow-lg hover:cursor-pointer hover:translate-y-[-1rem] ease-in duration-100 transform-gpu">
                             <h1 className="font-extrabold text-3xl shadow-2xl text-white p-6 text-center">
                                 {name}
                             </h1>

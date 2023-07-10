@@ -9,11 +9,11 @@ export const POST = async (req, res) => {
     try {
 
         await connectToDb();
-        var { action, otp, email, token } = await req.json();
+        var { action, otp, email, token, name } = await req.json();
         var response;
 
         if (action === 'auth') {
-            response = await auth(email);
+            response = await auth(email, name);
         }
         else if (action === 'verifyOtp') {
             response = await verifyOtp(email, otp);
@@ -31,13 +31,13 @@ export const POST = async (req, res) => {
 }
 
 ////////////////////////////////// FUNCTIONS //////////////////////////////////////
-const auth = async (email) => {
-
+const auth = async (email, name) => {
+console.log(name, email);
     try {
         var account = await Account.findOne({ email });
         var otp = generateOtp();
         if (!account) {
-            var acc = await Account.create({ email: email });
+            var acc = await Account.create({ name, email });
             acc.otp = otp;
             acc.save();
         } else {

@@ -32,7 +32,6 @@ export const POST = async (req, res) => {
 
 ////////////////////////////////// FUNCTIONS //////////////////////////////////////
 const auth = async (email, name) => {
-console.log(name, email);
     try {
         var account = await Account.findOne({ email });
         var otp = generateOtp();

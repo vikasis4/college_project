@@ -4,14 +4,17 @@ import { GeneralContext } from '@context/general';
 import { API_PDF } from '@utils/apis';
 import axios from 'axios'
 import PdfUpload from '@components/PdfUpload';
+import Notes_map from '@components/notes_map';
+import Pyq_map from '@components/pyq_map';
 
 function page() {
 
     const [mode, setMode] = React.useState('PYQ');
     const general = React.useContext(GeneralContext);
+    const [upload, setUpload] = React.useState(false)
     const [pyqs, setPyqs] = React.useState([]);
     const [notes, setNotes] = React.useState([]);
-    const [upload, setUpload] = React.useState(false)
+    const [SubjectRelationId, setSubjectRelationId] = React.useState('')
 
     React.useEffect(() => {
         if (!general.subject) {
@@ -29,13 +32,13 @@ function page() {
                     if (response.data.status) {
                         setPyqs(response.data.pdf.pyqs)
                         setNotes(response.data.pdf.notes)
+                        setSubjectRelationId(response.data.pdf.SubjectRelationId)
                     } else {
                         alert('Something Bhent wrong')
                     }
                 })
             }
             getSubject()
-
         }
     }, [general.subject])
 
@@ -67,14 +70,14 @@ function page() {
                                 pyqs.length === 0 ?
                                     <h1>Nothing is uploaded yet</h1>
                                     :
-                                    null
+                                    <Pyq_map pyqs={pyqs} general={general} SubjectRelationId={SubjectRelationId} />
                             )
                             :
                             (
                                 notes.length === 0 ?
                                     <h1>Nothing is uploaded yet</h1>
                                     :
-                                    null
+                                    <Notes_map notes={notes} general={general} SubjectRelationId={SubjectRelationId} />
                             )
                     }
                 </div>

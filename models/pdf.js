@@ -7,12 +7,14 @@ const PdfSchema = new Schema({
         link: { type: "string" },
         topics: [{ name: { type: "string" } }],
         author: { type: "string" },
+        refrence: { type: "string" },
     }],
     pyqs: [{
         link: { type: "string" },
         year: { type: "number" },
         type: { type: "string" },
         author: { type: "string" },
+        refrence: { type: "string" },
     }]
 })
 

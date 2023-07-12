@@ -10,6 +10,7 @@ export const GeneralProvider = ({ children }) => {
     const [datas, setDatas] = useState(null);
     const [subject, setSubject] = useState(null)
     const [profile, setProfile] = useState({
+        _id:'',
         name:'',
         email:'',
         comments:[],

@@ -9,7 +9,7 @@ function Branch_card() {
 
     const [map, setMap] = useState(null);
     const router = useRouter();
-    const general = useContext(GeneralContext)
+    const general = useContext(GeneralContext);
 
 
     useEffect(() => {

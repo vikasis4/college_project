@@ -10,8 +10,11 @@ const notoSansJapanese = Noto_Sans_JP({
 })
 
 export const metadata = {
-  title: 'Bro is working',
-  description: 'we will going towork on it'
+  title: 'Nit Kkr - pyq & notes',
+  description: 'nit kkr - pyq & notes',
+  icons:{
+    icon:['/images/favicon.ico?v=4']
+  }
 }
 
 function RootLayout({ children }) {

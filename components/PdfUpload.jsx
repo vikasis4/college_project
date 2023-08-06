@@ -10,12 +10,22 @@ function PdfUpload(props) {
     var { upload, setUpload, general, mode } = props.props;
 
     return (
-        <div style={{ display: upload ? 'block' : 'none' }} className="py-12 px-6 w-4/5 rounded-md shadow-lg bg-slate-500">
-            <div className="flex justify-center place-items-center border-b-2 border-black pb-4">
+        <div style={{ display: upload ? 'block' : 'none' }} className="py-12 px-6 w-6/7 rounded-md shadow-lg bg-slate-500">
+            <div className="flex flex-col gap-8 md:gap-2 md:flex-row justify-center place-items-center border-b-2 border-black pb-4">
                 <h1 className="text-xl text-semibold text-white">SUBJECT - {general.subject.name}</h1>
-                <h1 className="text-2xl text-black">&nbsp;&nbsp;||&nbsp;&nbsp;</h1>
+                {
+                    screen.width > 800 ?
+                        <h1 className="text-2xl text-black">&nbsp;&nbsp;||&nbsp;&nbsp;</h1>
+                        :
+                        null
+                }
                 <h1 className="text-xl text-semibold text-white"> You are uploading {mode}</h1>
-                <h1 className="text-2xl text-black">&nbsp;&nbsp;||&nbsp;&nbsp;</h1>
+                {
+                    screen.width > 800 ?
+                        <h1 className="text-2xl text-black">&nbsp;&nbsp;||&nbsp;&nbsp;</h1>
+                        :
+                        null
+                }
                 <button onClick={() => setUpload(false)} className="text-white text-xl text-bold bg-red-600 px-12 py-2 duration-200 hover:bg-red-900 rounded-md shadow-md">Close</button>
             </div>
 
@@ -87,7 +97,7 @@ function HandlePdf(props) {
         if (files && files[0].size < 60000000) {
             setFile(files[0]);
             var ts = new Date();
-            setFileName(ts +'__'+ files[0].name)
+            setFileName(ts + '__' + files[0].name)
         } else {
             alert('File size to large, size should be less than 60 mb')
         }
@@ -147,7 +157,7 @@ function HandlePdf(props) {
                     </>
                     :
                     <>
-                        <h1 className='text-bold text-2xl'>Is this a PYQ or Sample Paper ?</h1>
+                        <h1 className='text-bold text-xl md:text-2xl pb-8'>Is this a PYQ or a Sample Paper ?</h1>
                         <div className="flex justify-center place-items-center gap-8 pt-8">
                             <button onClick={() => setPaper('pyq')} style={{ transform: `translateY(${paper === 'pyq' ? '-12px' : '0'})` }} className="py-2 px-6 bg-blue-500 rounded-md shadow-md duration-150 text-white">PYQ</button>
                             <button onClick={() => setPaper('sample')} style={{ transform: `translateY(${paper === 'sample' ? '-12px' : '0'})` }} className="py-2 px-6 bg-blue-500 rounded-md shadow-md duration-150 text-white">Sample Paper</button>

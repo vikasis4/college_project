@@ -10,9 +10,9 @@ function Navbar() {
     const general = React.useContext(GeneralContext);
 
     return (
-        <div className="bg-[url('/images/bzck4.jpg')] bg-cover z-10 fixed top-0 left-0 right-0 py-5 drop-shadow-md flex justify-between place-items-center flex-row px-8">
+        <div className="bg-[url('/images/bzck4.jpg')] bg-cover z-10 fixed top-0 left-0 right-0 py-1 md:py-5 drop-shadow-md flex justify-between place-items-center flex-row px-8">
             <Link href="/">
-                <h1 className="text-align-center text-white text-4xl pb-2 font-bold ">NIT KKR -- PYQ + NOTES</h1>
+                <h1 className="text-align-center text-white text-xl md:text-4xl pb-2 font-bold ">NIT KKR Pyq + Notes</h1>
             </Link>
             {
                 general.profile.login ?

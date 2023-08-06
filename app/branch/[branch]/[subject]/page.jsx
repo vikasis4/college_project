@@ -51,7 +51,7 @@ function page() {
             }
 
             <div style={{ display: upload ? 'none' : 'block' }} className="py-8 bg-slate-400 w-4/5 rounded-lg shadow-md">
-                <h1 className="mb-12 text-3xl text-center text-bold border-b-2 pb-4 text-white">{general.subject ? general.subject.name : ''}</h1>
+                <h1 className="mb-12 text-xl md:text-3xl text-center text-bold border-b-2 pb-4 text-white">{general.subject ? general.subject.name : ''}</h1>
                 <div className="py-6 flex justify-center place-items-center gap-8">
                     <button onClick={() => setMode('PYQ')} style={{ transition: 'all 0.4s', transform: mode === 'PYQ' ? 'translateY(-1.8rem)' : 'translateY(0)' }} className="w-1/3 bg-blue-500 rounded-md shadow-md py-4 text-white text-bold">PYQ</button>
                     <button onClick={() => setMode('NOTES')} style={{ transition: 'all 0.4s', transform: mode === 'NOTES' ? 'translateY(-1.8rem)' : 'translateY(0)' }} className="w-1/3 bg-blue-500 rounded-md shadow-md py-4 text-white text-bold">Notes</button>
@@ -60,8 +60,8 @@ function page() {
 
             <div style={{ display: upload ? 'none' : 'block' }} className="py-8 mt-8 bg-slate-400 w-4/5 rounded-lg shadow-md">
                 <div className="flex border-b-2 pb-6 justify-around place-items-center">
-                    <h1 className="text-3xl text-center text-bold text-white">{mode}</h1>
-                    <button onClick={() => setUpload(true)} className='bg-blue-700 text-white rounded-md shadow-md py-4 px-12 duration-200 hover:bg-orange-400'>Upload {mode}</button>
+                    <h1 className="text-xl md:text-3xl text-center text-bold text-white">{mode}</h1>
+                    <button onClick={() => setUpload(true)} className='bg-blue-700 text-white rounded-md shadow-md py-4 px-6 md:px-12 duration-200 hover:bg-orange-400'>Upload {mode}</button>
                 </div>
                 <div className='flex flex-col justify-center place-items-center py-12'>
                     {

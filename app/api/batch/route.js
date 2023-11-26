@@ -7,6 +7,7 @@ export const POST = async (req, res) => {
     try {
         await connectToDb();
         var { name, subjects } = await req.json();
+        console.log(subjects);
         var branch = new Branch({
             name,
             subjects
